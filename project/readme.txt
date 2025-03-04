@@ -1,42 +1,77 @@
-Περιγραφή Εργασίας
+# **OpenGL Project - Phong Lighting & Moving Light Source**
 
-Η εργασία έχει υλοποιηθεί στο Visual Studio σε Windows.
+This project was developed using **Visual Studio on Windows** and implements **Phong lighting** in an OpenGL environment. A sphere, representing a light source, moves in a circular orbit around a **3D face model**. The scene is fully interactive, allowing the user to control the **camera and lighting speed**.
 
-main.cpp:
-Το πρόγραμμα αρχικοποιεί τη βιβλιοθήκη OpenGL, φορτώνει τα shaders και τα μοντέλα (το πρόσωπο και τη σφαίρα)
-και μια κάμερα που μπορεί να μετακινηθεί από τον χρήστη. Η σφαίρα έχει μια κυκλική τροχιά γύρω 
-από το πρόσωπο, με τη θέση της να υπολογίζεται από συναρτήσεις ημίτονου και συνημίτονου. Η ταχύτητα 
-της περιστροφής της σφαίρας μπορεί να ρυθμιστεί από τον χρήστη μέσω των πλήκτρων "H" και "J". Το πρόγραμμα επίσης 
-δέχεται είσοδο από το πληκτρολόγιο και το ποντίκι, επιτρέποντας τη μετακίνηση της κάμερας στον χώρο. 
-Χρησιμοποιείται φωτισμός βασισμένος στο μοντέλο Phong, με το φως να προέρχεται από τη θέση της σφαίρας. Στο κύριο 
-while loop του προγράμματος ενημερώνεται η θέση της σφαίρας, εφαρμόζονται μετασχηματισμοί 
-στα μοντέλα και σχεδιάζονται στην οθόνη.
+---
 
-Shaders:
+## **π Features**
+β **OpenGL initialization** with **GLFW** and **GLAD**  
+β **Phong lighting model** with dynamic lighting  
+β **3D models** loaded from `.obj` files (face and sphere)  
+β **User-controlled camera movement** (WASD & mouse)  
+β **Adjustable sphere rotation speed**  
 
- face.vs (Vertex Shader - Πρόσωπο)
-Ο vertex shader μετατρέπει τις τοπικές συντεταγμένες των κορυφών του μοντέλου προσώπου σε global συντεταγμένες 
-και τις στέλνει στον fragment shader:
-- Μετασχηματίζει τη θέση των κορυφών (`aPos`) με τους μετασχηματισμούς `model`, `view` και `projection`.
-- Υπολογίζει τα διανύσματα `Normal` για τον φωτισμό.
-- Στέλνει τις συντεταγμένες των texture (`TexCoords`) στον fragment shader.
+---
 
-face.fs (Fragment Shader - Πρόσωπο)
-Ο fragment shader υλοποιεί τον Phong φωτισμό και καθορίζει το τελικό χρώμα του προσώπου:
-- Υπολογίζει το ambient, diffuse και specular φωτισμό.
-- Εφαρμόζει attenuation ώστε το φως να μειώνεται με την απόσταση.
-- Συνδυάζει όλα τα στοιχεία για να παράγει το τελικό χρώμα του κάθε pixel `FragColor`.
+## **π₯οΈ `main.cpp` - Core Program Functionality**
+- Initializes **OpenGL**, **shaders**, and **3D models**.
+- The **camera** can be moved by the user.
+- The **sphere moves in a circular orbit** around the face model, with its position calculated using **sine and cosine functions**.
+- The **rotation speed of the sphere** can be adjusted using the **"H" (increase) and "J" (decrease) keys**.
+- The program **processes keyboard and mouse input**, allowing smooth **camera movement**.
+- **Phong lighting model** is used, with the **light source coming from the sphere's position**.
+- In the main **while loop**, the sphere's position is updated, transformations are applied to models, and everything is rendered.
 
- sphere.vs (Vertex Shader - Σφαίρα)
-Ο vertex shader της σφαίρας απλά υπολογίζει τη θέση των κορυφών της:
-- Εφαρμόζει μόνο τους μετασχηματισμούς `model`, `view` και `projection`.
+---
 
- sphere.fs (Fragment Shader - Σφαίρα)
-Ο fragment shader της σφαίρας είναι απλός:
-- Χρωματίζει τη σφαίρα λευκή (`vec4(1.0)`).
+## **π‘ Shaders**
+### ** `face.vs` (Vertex Shader - Face)**
+Transforms the **local vertex coordinates** of the face model into **global coordinates** and passes data to the fragment shader:
+- Applies transformations: `model`, `view`, and `projection`.
+- Computes **normal vectors (`Normal`)** for lighting calculations.
+- Passes **texture coordinates (`TexCoords`)** to the fragment shader.
 
- Χειρισμός Κάμερας και Κινήσεων:
-- `W`, `A`, `S`, `D`: Κίνηση της κάμερας εμπρός, πίσω, αριστερά, δεξιά.
-- `Ποντίκι`: Περιστροφή κάμερας.
-- `H`, `J`: Αύξηση/Μείωση της ταχύτητας περιστροφής της σφαίρας.
-- `ESC`: Κλείσιμο προγράμματος.
+### ** `face.fs` (Fragment Shader - Face)**
+Implements **Phong lighting** and determines the **final color** of the face model:
+- Computes **ambient, diffuse, and specular lighting**.
+- Applies **light attenuation** (reduces brightness over distance).
+- Combines all lighting components to determine the final **pixel color (`FragColor`)**.
+
+### ** `sphere.vs` (Vertex Shader - Sphere)**
+- Computes the **position of the sphere's vertices**.
+- Applies transformations using `model`, `view`, and `projection`.
+
+### ** `sphere.fs` (Fragment Shader - Sphere)**
+- **Simply colors the sphere white** (`vec4(1.0)`) since it represents the **light source**.
+- No lighting calculations are applied to the sphere itself.
+
+---
+
+## **π® Controls**
+| Key | Action |
+|-----|--------|
+| **W, A, S, D** | Move the **camera** forward, left, backward, and right. |
+| **Mouse** | Rotate the **camera**. |
+| **H** | Increase **sphere rotation speed**. |
+| **J** | Decrease **sphere rotation speed**. |
+| **ESC** | Exit the program. |
+
+---
+
+## **π How to Run**
+1. **Clone the repository**:
+   ```sh
+   git clone https://github.com/your-username/your-repo.git
+   cd your-repo
+   ```
+2. **Open the project in Visual Studio**.
+3. **Ensure the necessary dependencies** (GLFW, GLAD, Assimp) are included.
+4. **Build and Run** the project.
+
+---
+
+**Acknowledgments**
+
+    [OpenGL - The Cherno - YouTube](https://youtube.com/playlist?list=PLlrATfBNZ98foTJPJ_Ev03o2oq3-GGOS2&si=nHk_QFPstL1femtw)
+    [LearnOpenGL - Basic Lighting](https://learnopengl.com/Lighting/Basic-Lighting)
+
