@@ -68,7 +68,7 @@ Implements **Phong lighting** and determines the **final color** of the face mod
 3. **Ensure the necessary dependencies** (GLFW, GLAD, Assimp) are included.
 4. **Build and Run** the project.
 
---
+---
 
 ## **📚 Acknowledgments**
 This project was developed using resources from the following tutorials and references:
