@@ -58,7 +58,7 @@ Implements **Phong lighting** and determines the **final color** of the face mod
 
 ---
 
-## **🚀 How to Run**
+## ** How to Run**
 1. **Clone the repository**:
    ```sh
    git clone https://github.com/your-username/your-repo.git
@@ -68,10 +68,16 @@ Implements **Phong lighting** and determines the **final color** of the face mod
 3. **Ensure the necessary dependencies** (GLFW, GLAD, Assimp) are included.
 4. **Build and Run** the project.
 
----
+--
 
-**Acknowledgments**
+## **📚 Acknowledgments**
+This project was developed using resources from the following tutorials and references:
 
-    [OpenGL - The Cherno - YouTube](https://youtube.com/playlist?list=PLlrATfBNZ98foTJPJ_Ev03o2oq3-GGOS2&si=nHk_QFPstL1femtw)
-    [LearnOpenGL - Basic Lighting](https://learnopengl.com/Lighting/Basic-Lighting)
+- 🎥 **[OpenGL - The Cherno (YouTube Playlist)](https://youtube.com/playlist?list=PLlrATfBNZ98foTJPJ_Ev03o2oq3-GGOS2&si=nHk_QFPstL1femtw)**  
+  - A comprehensive introduction to OpenGL and graphics programming by The Cherno.
+
+- 📖 **[LearnOpenGL - Basic Lighting](https://learnopengl.com/Lighting/Basic-Lighting)**  
+  - A detailed guide on implementing lighting techniques in OpenGL, including the **Phong lighting model** used in this project.
+
+These resources were invaluable in understanding **OpenGL fundamentals, lighting techniques, and shader programming**. 🚀
 
